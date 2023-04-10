@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>A-Frame Scene</title>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
+    <script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras.tube@%5E3.5.x/dist/aframe-extras.tube.min.js"></script>
+</head>
+
+<body>
+    <a-scene renderer="antialias: true;
+                       colorManagement: true;
+                       sortObjects: true;
+                       physicallyCorrectLights: true;">
+
+        <!-- Assets -->
+        <a-assets>
+            <img id="ground" src="ground.jpg">
+
+            <a-asset-item id="mountain-obj" src="mountain.obj"></a-asset-item>
+            <a-asset-item id="mountain-mtl" src="mountain.mtl"></a-asset-item>
+
+            <a-asset-item id="tree-obj" src="tree.obj"></a-asset-item>
+            <a-asset-item id="tree-mtl" src="tree.mtl"></a-asset-item>
+        </a-assets>
+
+        <!-- Ground -->
+        <a-plane src="#ground" color="#CCC" height="2033" width="2033" rotation="-90 0 0" position="3 -10 -20"></a-plane>
+
+        <!-- Snow -->
+        <a-entity id="rain" particle-system="preset: snow; color: #FFF; particleCount: 5000"></a-entity>
+
+        <!-- Mountain -->
+        <a-entity obj-model="obj: #mountain-obj; mtl: #mountain-mtl" scale="2, 2, 2" position="3 0 -20"></a-entity>
+        <a-entity obj-model="obj: #mountain-obj; mtl: #mountain-mtl" scale="1.5, 2, 2" position="-5 0 -20"
+            rotation="0 30 0"></a-entity>
+        <a-entity obj-model="obj: #mountain-obj; mtl: #mountain-mtl" scale="2, 2, 2" position="-15 0 -20"
+            rotation="0 60 0"></a-entity>
+
+        <!-- Lake -->
+        <a-entity id="ocean" ocean="density: 20; width: 50; depth: 50; speed: 4"
+            material="color: #9CE3F9; opacity: 0.75; metalness: 0; roughness: 1" rotation="-90 0 0"></a-entity>
+
+        <!-- Trees -->
+        <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl" scale="0.1, 0.1, 0.1" position="0 -0.1 -10"></a-entity>
+        <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl" scale="0.12, 0.12, 0.12" position="-4 -0.3 -12"></a-entity>
+        <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl" scale="0.16, 0.16, 0.16" position="3 0.5 -15"></a-entity>
+        <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl" scale="0.2, 0.2, 0.2" position="2 -0.2 -5"></a-entity>
+        <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl" scale="0.3, 0.3, 0.3" position="-2 0 -18"></a-entity>
+        <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl" scale="0.09, 0.09, 0.09" position="-3 -0.3 -4"></a-entity>
+        <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl" scale="0.13, 0.13, 0.13" position="-9 -0.2 -10"></a-entity>
+
+        <!-- Sky -->
+        <a-entity id="sky" geometry="primitive: sphere; radius: 5000"
+            material="shader: gradient; topColor: 235 235 245; bottomColor: 185 185 210" scale="-1 1 1"></a-entity>
+
+        <!-- Camera and Light -->
+        <a-entity position="0 1.6 0">
+            <a-entity camera look-controls wasd-controls></a-entity>
+        </a-entity>
+
+        <a-light type="ambient" color="#888" light="castShadow:true;"></a-light>
+        <a-light type="directional" intensity="0.5" position="1 1 0" light="castShadow:true;"></a-light>
+    </a-scene>
+</body>
+
+</html>
